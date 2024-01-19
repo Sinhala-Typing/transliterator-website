@@ -19,27 +19,41 @@
             <div class="col-md-8">
                 <form name="txtBox" id="txtBox">
                     <img src="img/logo.png" alt="Singlish to Sinhala" class="img-fluid">
-                    <br><br>
-                    <div class="row no-gutters">
-                        <div class="col-12 col-sm-6 col-md-8 TableText">
-                            Transliterated / SinGlish (සිංග්ලිශ්)
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <strong>Transliterated / SinGlish (සිංග්ලිශ්)</strong>
                         </div>
-                        <div class="col-6 col-md-4">
+                        <div class="col-md-auto">
                             <button type="button" class="btn btn-outline-success" id="transliterationInfo">
                                 Show Transliteration Scheme
                             </button>
+                        </div>
+                        <div class="col col-lg-2">
+                            <input type="reset" value="Clear" class="btn btn-outline-danger">
                         </div>
                     </div>
                     <div class="mb-3"></div>
                     <textarea onkeyup="startText();" onselect="startText();" onclick="startText();" class="form-control"
                         style="font-size: 12pt;" name="box1" rows="7"></textarea>
-                    <input type="reset" value="Reset" class="btn btn-secondary mt-2">
-                    <br>
-                    <span class="TableText">Sinhala Unicode (සිංහල යුනිකෝඩ්)</span>
-                    <br>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-10">
+                            <span class="TableText">
+                                <strong>Sinhala Unicode (සිංහල යුනිකෝඩ්)</strong>
+                            </span>
+                        </div>
+                        <div class="col-2">
+                            <input onclick="copyit('txtBox.box2')" type="button" value="Copy"
+                                class="btn  btn-outline-info mt-2">
+                        </div>
+                    </div>
+                    <div class="mb-3"></div>
                     <textarea style="font-size: 14pt; font-family: Potha, Malithi Web , Arial Unicode MS;"
-                        class="form-control" name="box2" rows="7"></textarea>
-                    <input onclick="copyit('txtBox.box2')" type="button" value="Copy" class="btn btn-primary mt-2">
+                        class="form-control" name="box2" rows="7">
+                    </textarea>
                 </form>
                 <br>
                 <hr>
