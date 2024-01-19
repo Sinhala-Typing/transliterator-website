@@ -8,47 +8,1513 @@
 
     <script src="js/logic.js"></script>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 
 <body>
-    <center>
-        <table width="600px">
-            <tbody>
-                <tr>
-                    <td>
-                        <form name="txtBox" id="txtBox">
-                            <img src="./Real Time Unicode Converter_files/ui3RT.jpg" alt="Real Time Font Converter"><br>
-                            <br>
-                            <span class="TableText">Transliterated ( SinGlish Scheme)</span> &nbsp; &nbsp; &nbsp;
-                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a><span id="link" class="link" align="right"
-                                    onclick="changeVisibility()">&nbsp;Show Transliteration Scheme&nbsp;</span></a>
-                            <br>
-                            <textarea onkeyup="startText();" onselect="startText();" onclick="startText();" style="font-size: 12pt;
-                            width: 600px;" name="box1" rows="7"></textarea>
-                            <input type="reset" value="Reset" style="position: relative; left: 500px; width: 100px;">
-                            <br>
-                            <span class="TableText">Unicode (යුනිකෝඩ්)</span><br>
-                            <textarea style="font-size: 14pt; font-family: Potha, Malithi Web , Arial Unicode MS;
-                            width: 600px;" name="box2" rows="7"></textarea>
-                            <input onclick="copyit(&#39;txtBox.box2&#39;)" type="button" value="Copy" style="position: relative;
-                            left: 500px; width: 100px;">
-                        </form>
-                        <br>
-                        <hr>
-                        <center>
-                            <span class="p">© 2006 Language Technology Research Laboratory - University of Colombo
-                                School of Computing</span><br>
-                            <span class="p" style="color: red; --darkreader-inline-color: #ff1a1a;"
-                                data-darkreader-inline-color="">Best viewed with Internet Explorer 5.x or higher
-                                in 1024 x 768 resolution.</span>
-                        </center>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </center>
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form name="txtBox" id="txtBox">
+                    <img src="img/logo.png" alt="Singlish to Sinhala" class="img-fluid">
+                    <br><br>
+                    <div class="row no-gutters">
+                        <div class="col-12 col-sm-6 col-md-8 TableText">Transliterated ( SinGlish Scheme)</div>
+                        <div class="col-6 col-md-4">
+                            <button type="button" class="btn btn-outline-success" id="transliterationInfo">Show
+                                Transliteration Scheme</button>
+                        </div>
+                    </div>
+                    <div class="mb-3"></div>
+                    <textarea onkeyup="startText();" onselect="startText();" onclick="startText();" class="form-control"
+                        style="font-size: 12pt;" name="box1" rows="7"></textarea>
+                    <input type="reset" value="Reset" class="btn btn-secondary mt-2">
+                    <br>
+                    <span class="TableText">Sinhala Unicode (සිංහල යුනිකෝඩ්) </span>
+                    <br>
+                    <textarea style="font-size: 14pt; font-family: Potha, Malithi Web , Arial Unicode MS;"
+                        class="form-control" name="box2" rows="7"></textarea>
+                    <input onclick="copyit('txtBox.box2')" type="button" value="Copy" class="btn btn-primary mt-2">
+                </form>
+                <br>
+                <hr>
+                <div class="text-center">
+                    <span class="p">
+                        © 2006 Language Technology Research Laboratory - University of Colombo School of Computing
+                    </span>
+                    <br>
+                    <span class="p" style="color: red;">
+                        Best viewed with Internet Explorer 5.x or higher in 1024 x 768 resolution.
+                    </span>
+                </div>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="transliterationModal" tabindex="-1" role="dialog"
+        aria-labelledby="transliterationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-fullscreen modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="transliterationModalLabel">Transliteration Table</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table border="0" cellpadding="0" cellspacing="0" align="center">
+                        <tbody>
+                            <tr>
+                                <td rowspan="5" style="width:10px;"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td rowspan="5" style="width:10px;"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="height:5px;"></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 216px" valign="top" align="center">
+                                    <table border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="9" bgcolor="#EBEBEB"
+                                                    style="--darkreader-inline-bgcolor: #232628;">
+                                                    <p align="center">
+                                                        <span class="title">Vowel Sounds</span>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <p align="center">
+                                                        <span class="title2">Short</span>
+                                                    </p>
+                                                </td>
+                                                <td style="width: 15px;"></td>
+                                                <td colspan="5">
+                                                    <p align="center">
+                                                        <span class="title2">Long</span>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td bgcolor="#EBDDB1"
+                                                    style="width: 45px; --darkreader-inline-bgcolor: #423611;">
+                                                    <p>
+                                                        <span class="sinhala">අ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#EBDDB1"
+                                                    style="width: 30px; --darkreader-inline-bgcolor: #423611;">
+                                                    <p>
+                                                        <span class="english">a</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#EBDDB1"
+                                                    style="width: 30px; --darkreader-inline-bgcolor: #423611;">
+                                                </td>
+                                                <td>
+                                                </td>
+                                                <td bgcolor="#E0E2AF"
+                                                    style="width: 45px; --darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="sinhala">ආ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E0E2AF"
+                                                    style="width: 30px; --darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="english">aa</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E0E2AF"
+                                                    style="width: 30px; --darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="english">a)</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E0E2AF"
+                                                    style="width: 30px; --darkreader-inline-bgcolor: #3f4017;">
+                                                    &nbsp;
+                                                </td>
+                                                <td width="30" bgcolor="#E0E2AF"
+                                                    style="--darkreader-inline-bgcolor: #3f4017;">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td bgcolor="#F7F0DD" style="--darkreader-inline-bgcolor: #2e250b;">
+                                                    <p>
+                                                        <span class="sinhala">ඇ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F7F0DD" style="--darkreader-inline-bgcolor: #2e250b;">
+                                                    <p>
+                                                        <span class="english">A</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F7F0DD" style="--darkreader-inline-bgcolor: #2e250b;">
+                                                    <p>
+                                                        <span class="english">\a</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    &nbsp;
+                                                </td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="sinhala">ඈ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="english">Aa</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="english">A)</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="english">ae</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td bgcolor="#EBDDB1" style="--darkreader-inline-bgcolor: #423611;">
+                                                    <p>
+                                                        <span class="sinhala">ඉ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#EBDDB1" style="--darkreader-inline-bgcolor: #423611;">
+                                                    <p>
+                                                        <span class="english">i</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#EBDDB1" style="--darkreader-inline-bgcolor: #423611;">
+                                                </td>
+                                                <td>
+                                                </td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="sinhala">ඊ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="english">ii</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="english">i)</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="english">ie</span>
+                                                    </p>
+                                                </td>
+                                                <td width="24" bgcolor="#E0E2AF"
+                                                    style="--darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="english">ee</span>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td bgcolor="#F7F0DD" style="--darkreader-inline-bgcolor: #2e250b;">
+                                                    <p>
+                                                        <span class="sinhala">එ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F7F0DD" style="--darkreader-inline-bgcolor: #2e250b;">
+                                                    <p>
+                                                        <span class="english">e</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F7F0DD" style="--darkreader-inline-bgcolor: #2e250b;">
+                                                    &nbsp;
+                                                </td>
+                                                <td>
+                                                    &nbsp;
+                                                </td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="sinhala">ඒ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="english">ea</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="english">e)</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="english">ei</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td bgcolor="#EBDDB1" style="--darkreader-inline-bgcolor: #423611;">
+                                                    <p>
+                                                        <span class="sinhala">ඔ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#EBDDB1" style="--darkreader-inline-bgcolor: #423611;">
+                                                    <p>
+                                                        <span class="english">o</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#EBDDB1" style="--darkreader-inline-bgcolor: #423611;">
+                                                    &nbsp;
+                                                </td>
+                                                <td>
+                                                    &nbsp;
+                                                </td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="sinhala">ඕ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="english">oe</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="english">o)</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                    &nbsp;
+                                                </td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td bgcolor="#F7F0DD" style="--darkreader-inline-bgcolor: #2e250b;">
+                                                    <p>
+                                                        <span class="sinhala">උ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F7F0DD" style="--darkreader-inline-bgcolor: #2e250b;">
+                                                    <p>
+                                                        <span class="english">u</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F7F0DD" style="--darkreader-inline-bgcolor: #2e250b;">
+                                                    &nbsp;
+                                                </td>
+                                                <td>
+                                                    &nbsp;
+                                                </td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="sinhala">ඌ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="english">uu</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="english">u)</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="english">oo</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                </td>
+                                                <td>
+                                                </td>
+                                                <td>
+                                                </td>
+                                                <td></td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="sinhala">ඖ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="english">au</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                </td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                </td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td style="width: 20px"></td>
+                                <td style="width: 248px" valign="top" align="center">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="4" bgcolor="#EBEBEB"
+                                                    style="--darkreader-inline-bgcolor: #232628;">
+                                                    <p align="center">
+                                                        <span class="title">Auxiliaries</span>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <p align="center">
+                                                        <span class="title2">Special Auxiliaries</span>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                <td style="width: 40px">
+                                                    <p>
+                                                        <span class="sinhala">ර්</span>
+                                                    </p>
+                                                </td>
+                                                <td style="width: 40px">
+                                                    <p>
+                                                        <span style="font-family: &quot;Iskoola Pota&quot;">මර්‍</span>
+                                                    </p>
+                                                </td>
+                                                <td style="width: 70px">
+                                                    <p>
+                                                        <span class="english">\r</span><i>&lt;letter&gt;</i>
+                                                    </p>
+                                                </td>
+                                                <td style="width: 70px">
+                                                    <p>
+                                                        <span class="english">R</span><i>&lt;letter&gt;</i>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                <td>
+                                                    <p>
+                                                        <span class="sinhala">්‍ය</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        <span style="font-family: &quot;Iskoola Pota&quot;">ධ්‍ය</span>‍
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        <i>&lt;letter&gt;</i><span class="english">Y</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        <i>&lt;letter&gt;</i><span class="english">\y</span>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <p align="center">
+                                                        <span class="title2">Vowel Sound Auxiliaries</span>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                <td>
+                                                    <p>
+                                                        <span class="sinhala">ෘ</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        <span style="font-family: &quot;Iskoola Pota&quot;">කෘ</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        <i>&lt;letter&gt;</i><span class="english">ru</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+                                            <tr bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                <td>
+                                                    <p>
+                                                        <span class="sinhala">ෟ</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        <span style="font-family: &quot;Iskoola Pota&quot;">චෞ</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        <i>&lt;letter&gt;</i><span class="english">au</span>
+                                                    </p>
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                            <tr bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                <td>
+                                                    <p>
+                                                        <span class="sinhala">ෛ</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        <span style="font-family: &quot;Iskoola Pota&quot;">මෛ</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        <i>&lt;letter&gt;</i><span class="english">I</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <p align="center">
+                                                        <span class="title2">Nasal Sound Auxiliaries</span>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                <td>
+                                                    <p>
+                                                        <span class="sinhala">ඬ</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        <span style="font-family: &quot;Iskoola Pota&quot;">හඬ</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        <span class="english"><b>nn</b>da</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+                                            <tr bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                <td>
+                                                    <p>
+                                                        <span class="sinhala">ඳ</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        <span style="font-family: &quot;Iskoola Pota&quot;">හඳ</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        <span class="english"><b>nn</b>dha</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                <td>
+                                                    <p>
+                                                        <span class="sinhala">ඟ</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        <span style="font-family: &quot;Iskoola Pota&quot;">ගඟ</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        <span class="english"><b>nn</b>ga</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td style="width: 20px"></td>
+                                <td style="width: 370px" valign="top" align="center">
+                                    <table border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="15" bgcolor="#EBEBEB"
+                                                    style="--darkreader-inline-bgcolor: #232628;">
+                                                    <p align="center">
+                                                        <span class="title">Consonants</span>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="6">
+                                                    <p align="center">
+                                                        <span class="title2">Common</span>
+                                                    </p>
+                                                </td>
+                                                <td colspan="3">
+                                                    <p align="center">
+                                                        <span class="title2">Aspirated</span>
+                                                    </p>
+                                                </td>
+                                                <td></td>
+                                                <td colspan="2">
+                                                    <p align="center">
+                                                        <span class="title2">Special</span>
+                                                    </p>
+                                                </td>
+                                                <td></td>
+                                                <td colspan="2">
+                                                    <p align="center">
+                                                        <span class="title2">Standalone</span>
+                                                    </p>
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td bgcolor="#E8F4D0"
+                                                    style="width: 35px; --darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="sinhala">ක</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0"
+                                                    style="width: 40px; --darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="english">k</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0"
+                                                    style="width: 35px; --darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="sinhala">බ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0"
+                                                    style="width: 45px; --darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="english">b</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0"
+                                                    style="width: 45px; --darkreader-inline-bgcolor: #2a340c;"></td>
+                                                <td style="width:20px"></td>
+                                                <td bgcolor="#DBFB9F"
+                                                    style="width: 35px; --darkreader-inline-bgcolor: #3c5003;">
+                                                    <p>
+                                                        <span class="sinhala">ඛ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#DBFB9F"
+                                                    style="width: 45px; --darkreader-inline-bgcolor: #3c5003;">
+                                                    <p>
+                                                        <span class="english">kh</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#DBFB9F"
+                                                    style="width: 45px; --darkreader-inline-bgcolor: #3c5003;">
+                                                    <p>
+                                                        <span class="english">K</span>
+                                                    </p>
+                                                </td>
+                                                <td style="width:20px"></td>
+                                                <td bgcolor="#E0E2AF"
+                                                    style="width: 30px; --darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="sinhala">ඹ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E0E2AF"
+                                                    style="width: 45px; --darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="english">B</span>
+                                                    </p>
+                                                </td>
+                                                <td style="width:20px"></td>
+                                                <td bgcolor="#EBDDB1"
+                                                    style="width: 30px; --darkreader-inline-bgcolor: #423611;">
+                                                    <p>
+                                                        <span class="sinhala">ං</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#EBDDB1"
+                                                    style="width: 45px; --darkreader-inline-bgcolor: #423611;">
+                                                    <p>
+                                                        <span class="english">\n</span>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="sinhala">ග</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="english">g</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="sinhala">ම</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="english">m</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    &nbsp;</td>
+                                                <td>
+                                                    &nbsp;
+                                                </td>
+                                                <td bgcolor="#F4FEE2" style="--darkreader-inline-bgcolor: #253202;">
+                                                    <p>
+                                                        <span class="sinhala">ඝ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F4FEE2" style="--darkreader-inline-bgcolor: #253202;">
+                                                    <p>
+                                                        <span class="english">gh</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F4FEE2" style="--darkreader-inline-bgcolor: #253202;">
+                                                    <p>
+                                                        <span class="english">G</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    &nbsp;</td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="sinhala">ශ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="english">sh</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    &nbsp;</td>
+                                                <td bgcolor="#F7F0DD" style="--darkreader-inline-bgcolor: #2e250b;">
+                                                    <p>
+                                                        <span class="sinhala">ඃ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F7F0DD" style="--darkreader-inline-bgcolor: #2e250b;">
+                                                    <p>
+                                                        <span class="english">\h</span>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="19" bgcolor="#E8F4D0"
+                                                    style="--darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="sinhala">ච</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="english">ch</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="sinhala">ය</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="english">y</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                    &nbsp;</td>
+                                                <td>
+                                                    &nbsp;
+                                                </td>
+                                                <td bgcolor="#DBFB9F" style="--darkreader-inline-bgcolor: #3c5003;">
+                                                    <p>
+                                                        <span class="sinhala">ඡ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#DBFB9F" style="--darkreader-inline-bgcolor: #3c5003;">
+                                                    <p>
+                                                        <span class="english">Ch</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#DBFB9F" style="--darkreader-inline-bgcolor: #3c5003;">
+                                                    &nbsp;
+                                                </td>
+                                                <td style="width: 16px">
+                                                    &nbsp;</td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="sinhala">ෂ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="english">Sh</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    &nbsp;</td>
+                                                <td bgcolor="#EBDDB1" style="--darkreader-inline-bgcolor: #423611;">
+                                                    <p>
+                                                        <span class="sinhala">ඬ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#EBDDB1" style="--darkreader-inline-bgcolor: #423611;">
+                                                    <p>
+                                                        <span class="english">\N</span>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="19" bgcolor="#F5FBEC"
+                                                    style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="sinhala">ජ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="english">j</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="sinhala">ර</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="english">r</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC"
+                                                    style="width: 17px; --darkreader-inline-bgcolor: #1f2808;">
+                                                    &nbsp;</td>
+                                                <td>
+                                                    &nbsp;
+                                                </td>
+                                                <td bgcolor="#F4FEE2" style="--darkreader-inline-bgcolor: #253202;">
+                                                    <p>
+                                                        <span class="sinhala">ඨ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F4FEE2" style="--darkreader-inline-bgcolor: #253202;">
+                                                    &nbsp;
+                                                </td>
+                                                <td bgcolor="#F4FEE2" style="--darkreader-inline-bgcolor: #253202;">
+                                                    <p>
+                                                        <span class="english">T</span>
+                                                    </p>
+                                                </td>
+                                                <td></td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="sinhala">ෆ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="english">f</span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    &nbsp;</td>
+                                                <td bgcolor="#F7F0DD" style="--darkreader-inline-bgcolor: #2e250b;">
+                                                    <p>
+                                                        <span class="sinhala">ඍ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F7F0DD" style="--darkreader-inline-bgcolor: #2e250b;">
+                                                    <p>
+                                                        <span class="english">\R</span>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="sinhala">ට</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="english">t</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="sinhala">ල</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="english">l</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                    &nbsp;</td>
+                                                <td>
+                                                    &nbsp;
+                                                </td>
+                                                <td bgcolor="#DBFB9F" style="--darkreader-inline-bgcolor: #3c5003;">
+                                                    <p>
+                                                        <span class="sinhala">ඪ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#DBFB9F" style="--darkreader-inline-bgcolor: #3c5003;">
+                                                    &nbsp;
+                                                </td>
+                                                <td bgcolor="#DBFB9F" style="--darkreader-inline-bgcolor: #3c5003;">
+                                                    <p>
+                                                        <span class="english">D</span>
+                                                    </p>
+                                                </td>
+                                                <td style="width: 16px">
+                                                    &nbsp;</td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="sinhala">ඥ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="english">GN</span>
+                                                    </p>
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="sinhala">ඩ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="english">d</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="sinhala">ව</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="english">w</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <span class="english">v</span>
+                                                </td>
+                                                <td></td>
+                                                <td bgcolor="#F4FEE2" style="--darkreader-inline-bgcolor: #253202;">
+                                                    <p>
+                                                        <span class="sinhala">ථ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F4FEE2" style="--darkreader-inline-bgcolor: #253202;">
+                                                    <p>
+                                                        <span class="english">Th</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F4FEE2" style="--darkreader-inline-bgcolor: #253202;">
+                                                </td>
+                                                <td>
+                                                    &nbsp;</td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="sinhala">ඤ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="english">KN</span>
+                                                    </p>
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="sinhala">ත</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="english">th</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="sinhala">ස</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="english">s</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                    &nbsp;</td>
+                                                <td>
+                                                    &nbsp;
+                                                </td>
+                                                <td bgcolor="#DBFB9F" style="--darkreader-inline-bgcolor: #3c5003;">
+                                                    <p>
+                                                        <span class="sinhala">ධ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#DBFB9F" style="--darkreader-inline-bgcolor: #3c5003;">
+                                                    <p>
+                                                        <span class="english">Dh</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#DBFB9F" style="--darkreader-inline-bgcolor: #3c5003;">
+                                                    &nbsp;
+                                                </td>
+                                                <td></td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="sinhala">ඣ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="english">q</span>
+                                                    </p>
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="sinhala">ද</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="english">dh</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="sinhala">හ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="english">h</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                </td>
+                                                <td></td>
+                                                <td bgcolor="#F4FEE2" style="--darkreader-inline-bgcolor: #253202;">
+                                                    <p>
+                                                        <span class="sinhala">ඵ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F4FEE2" style="--darkreader-inline-bgcolor: #253202;">
+                                                    <p>
+                                                        <span class="english">ph</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F4FEE2" style="--darkreader-inline-bgcolor: #253202;">
+                                                    <p>
+                                                        <span class="english">P</span>
+                                                    </p>
+                                                </td>
+                                                <td></td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="sinhala">ළු</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F0F1DA" style="--darkreader-inline-bgcolor: #2c2c11;">
+                                                    <p>
+                                                        <span class="english">Lu</span>
+                                                    </p>
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="sinhala">න</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="english">n</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="sinhala">ණ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                    <p>
+                                                        <span class="english">N</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E8F4D0" style="--darkreader-inline-bgcolor: #2a340c;">
+                                                </td>
+                                                <td></td>
+                                                <td bgcolor="#DBFB9F" style="--darkreader-inline-bgcolor: #3c5003;">
+                                                    <p>
+                                                        <span class="sinhala">භ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#DBFB9F" style="--darkreader-inline-bgcolor: #3c5003;">
+                                                    <p>
+                                                        <span class="english">bh</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#DBFB9F" style="--darkreader-inline-bgcolor: #3c5003;">
+                                                </td>
+                                                <td></td>
+                                                <td bgcolor="#E0E2AF"
+                                                    style="height: 19px; --darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="sinhala">ළූ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#E0E2AF" style="--darkreader-inline-bgcolor: #3f4017;">
+                                                    <p>
+                                                        <span class="english">Luu</span>
+                                                    </p>
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="sinhala">ප</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="english">p</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="sinhala">ළ</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                    <p>
+                                                        <span class="english">L</span>
+                                                    </p>
+                                                </td>
+                                                <td bgcolor="#F5FBEC" style="--darkreader-inline-bgcolor: #1f2808;">
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="height:10px;"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    <center>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="13" bgcolor="#EBEBEB"
+                                                        style="--darkreader-inline-bgcolor: #232628;">
+                                                        <p align="center">
+                                                            <span
+                                                                style="color: rgb(0, 0, 0); font-family: Arial; --darkreader-inline-color: #7faeff;">
+                                                                Deriving Consonants
+                                                            </span>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr bgcolor="#FCFFB7" style="--darkreader-inline-bgcolor: #444700;">
+                                                    <td style="width: 62px;">
+                                                        <p>
+                                                            <span class="sinhala">ක්</span>
+                                                        </p>
+                                                    </td>
+                                                    <td style="width: 62px;">
+                                                        <p>
+                                                            <span class="sinhala">ක</span>
+                                                        </p>
+                                                    </td>
+                                                    <td style="width: 62px;">
+                                                        <p>
+                                                            <span class="sinhala">කා</span>
+                                                        </p>
+                                                    </td>
+                                                    <td style="width: 62px;">
+                                                        <p>
+                                                            <span class="sinhala">කැ</span>
+                                                        </p>
+                                                    </td>
+                                                    <td style="width: 62px;">
+                                                        <p>
+                                                            <span class="sinhala">කෑ</span>
+                                                        </p>
+                                                    </td>
+                                                    <td style="width: 62px;">
+                                                        <p>
+                                                            <span class="sinhala">කි</span>
+                                                        </p>
+                                                    </td>
+                                                    <td style="width: 62px;">
+                                                        <p>
+                                                            <span class="sinhala">කී</span>
+                                                        </p>
+                                                    </td>
+                                                    <td style="width: 62px;">
+                                                        <p>
+                                                            <span class="sinhala">කු</span>
+                                                        </p>
+                                                    </td>
+                                                    <td style="width: 62px;">
+                                                        <p>
+                                                            <span class="sinhala">කූ</span>
+                                                        </p>
+                                                    </td>
+                                                    <td style="width: 62px;">
+                                                        <p>
+                                                            <span class="sinhala">කෙ</span>
+                                                        </p>
+                                                    </td>
+                                                    <td style="width:62px">
+                                                        <p>
+                                                            <span class="sinhala">කේ</span>
+                                                        </p>
+                                                    </td>
+                                                    <td style="width:62px;">
+                                                        <p>
+                                                            <span class="sinhala">කො</span>
+                                                        </p>
+                                                    </td>
+                                                    <td style="width: 62px;">
+                                                        <p>
+                                                            <span class="sinhala">කෝ</span>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr bgcolor="#FEFFDF" style="--darkreader-inline-bgcolor: #333500;">
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">k</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">ka</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">kaa</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">kA</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">kAa</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">ki</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">kie</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">ku</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">kuu</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">ke</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">kei</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">ko</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">koe</span>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr bgcolor="#FCFFB7" style="--darkreader-inline-bgcolor: #444700;">
+                                                    <td>
+                                                        <p>
+                                                            <span class="sinhala">කෞ</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="sinhala">ක්‍ර</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="sinhala">ක්‍රා</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="sinhala">ක්‍රැ</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="sinhala">ක්‍රෑ</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="sinhala">ක්‍රි</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="sinhala">ක්‍රී</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="sinhala">කෘ</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="sinhala">කෲ</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="sinhala">ක්‍රෙ</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="sinhala">ක්‍රේ</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="sinhala">ක්‍රො</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="sinhala">ක්‍රෝ</span>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr bgcolor="#FEFFDF" style="--darkreader-inline-bgcolor: #333500;">
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">kau</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">kra</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">kraa</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">krA</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">krAa</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">kri</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">krie</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">kru</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">kruu</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">kre</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">krei</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">kro</span>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <span class="english">kroe</span>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </center>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="height:10px;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and Popper.js links -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#transliterationInfo").click(function () {
+                $("#transliterationModal").modal();
+            });
+        });
+    </script>
+
 </body>
 
 </html>
